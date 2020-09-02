@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
+#File which you want analysis
+trace_file_name = "./trace4.txt"
+
 # GPS data
 max_time = 0
 lat_list = []
@@ -59,7 +62,7 @@ def create_html_map():
     gmap.marker(lat_list[width - 1], lon_list[width - 1], color='red')
 
     # 生成html
-    gmap.draw("./map11.html")  # 绝对路径，绘出地图样貌
+    gmap.draw("./map-trace.html")  # 绝对路径，绘出地图样貌
 
 
 def calculate_data():
@@ -84,7 +87,7 @@ def calculate_data():
 
 
 def main():
-    read_GPS_data("./trace4.txt")
+    read_GPS_data(trace_file_name)
     create_html_map()
     calculate_data()
 
