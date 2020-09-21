@@ -1,4 +1,4 @@
-import gmplot  # 导入模块
+import gmplot 
 import numpy as np
 import matplotlib.pyplot as plt
 import math
@@ -25,18 +25,15 @@ speed = []
 avg_speed = 0.0
 
 
-# 从文件中加载GPS数据：经纬度，时间
 def read_GPS_data(filename):
     f = open(filename, 'r')
     while True:
         line = f.readline()
-        if not line:  # 等价于if line == "":
+        if not line:  
             break
         if line.find('index') != -1:
             data = eval(line)
-            # 纬度
             latitude = data['latitude']
-            # 经度
             longitude = data['longitude']
             if latitude != "NULL":
                 run_time = data['time']
@@ -51,18 +48,14 @@ def read_GPS_data(filename):
 
 
 def create_html_map():
-    # 初始化位置
-    gmap = gmplot.GoogleMapPlotter(lat_list[0], lon_list[0], 16)  # 传入经纬度的参数
+    gmap = gmplot.GoogleMapPlotter(lat_list[0], lon_list[0], 16) 
 
-    # 绘制轨迹
     gmap.plot(lat_list, lon_list)
 
-    # 起始点标记
     gmap.marker(lat_list[0], lon_list[0], color='blue')
     gmap.marker(lat_list[width - 1], lon_list[width - 1], color='red')
 
-    # 生成html
-    gmap.draw("./map-trace.html")  # 绝对路径，绘出地图样貌
+    gmap.draw("./map-trace.html")
 
 
 def calculate_data():
